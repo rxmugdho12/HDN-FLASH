@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HDN FLASH | Cyber Gaming & Tech Portal</title>
+  <meta name="description" content="HDN FLASH - Premium Cybernetic Gaming, Bot Architecture & Game Automation Portal" />
+  <meta name="theme-color" content="#030308" />
+  <meta name="author" content="HDN FLASH" />
+
+  <!-- Open Graph / Social Preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="HDN FLASH | Cyber Gaming & Tech Portal" />
+  <meta property="og:description" content="Premium Cybernetic Gaming, Bot Architecture & Game Automation Portal by HDN FLASH." />
+  <meta property="og:image" content="assets/images/logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Browser Tab Icon / Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/images/icon.jpg" />
+  <link rel="apple-touch-icon" href="assets/images/icon.jpg" />
+
+  <!-- Premium Cyber & Tech Fonts from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Custom Premium Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Cyber Reticle Custom Cursor -->
+  <div id="cursor-glow"></div>
+  <div id="cursor-reticle"></div>
+  <div id="cursor-core"></div>
+
+  <!-- Background Galaxy Canvas & Ambient Glow Blobs -->
+  <canvas id="galaxy"></canvas>
+  <div class="scanlines"></div>
+  <div class="grain-overlay"></div>
+  <div class="vignette-overlay"></div>
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+
+  <!-- Glassmorphic Cyber Access Terminal (Enter Screen) -->
+  <div id="enter-screen">
+    <div class="enter-card glow-border">
+      <div class="cyber-badge-container">
+        <span class="cyber-status-dot"></span>
+        <span class="enter-badge">SYSTEM SECURITY ACCESS</span>
+      </div>
+      <h1 class="enter-title neon-text">HDN FLASH</h1>
+      <p class="enter-subtitle">ENGINEERED FOR DOMINANCE & INTERACTIVE EXPERIENCE</p>
+
+      <div class="boot-sequence" id="boot-sequence">
+        <div class="boot-line"><span class="boot-check"><i class="fa-solid fa-check"></i></span> Loading kernel modules...</div>
+        <div class="boot-line"><span class="boot-check"><i class="fa-solid fa-check"></i></span> Verifying render pipeline...</div>
+        <div class="boot-line"><span class="boot-check"><i class="fa-solid fa-check"></i></span> Establishing secure uplink...</div>
+        <div class="boot-progress-track">
+          <div class="boot-progress-fill" id="boot-progress-fill"></div>
+        </div>
+        <div class="boot-percent" id="boot-percent">0%</div>
+      </div>
+      
+      <div class="enter-metrics">
+        <div class="metric-item"><i class="fa-solid fa-bolt text-cyan"></i> <span>FPS: 144+</span></div>
+        <div class="metric-item"><i class="fa-solid fa-shield-halved text-purple"></i> <span>SECURITY: ACTIVE</span></div>
+        <div class="metric-item"><i class="fa-solid fa-microchip text-gold"></i> <span>CORE: ONLINE</span></div>
+      </div>
+
+      <button class="enter-btn" id="enter-btn" disabled>
+        <span class="btn-glow"></span>
+        <span class="btn-text"><i class="fa-solid fa-power-off"></i> INITIALIZE SYSTEM</span>
+      </button>
+
+      <div class="enter-footnote">
+        <i class="fa-solid fa-volume-high text-cyan"></i> Audio system ready • Click to activate immersive soundscape
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Audio Visualizer Toggle Button -->
+  <button id="audio-toggle" title="Toggle Audio Experience">
+    <div class="eq-bars">
+      <span class="bar bar1"></span>
+      <span class="bar bar2"></span>
+      <span class="bar bar3"></span>
+      <span class="bar bar4"></span>
+    </div>
+    <i class="fa-solid fa-music music-icon"></i>
+  </button>
+  <audio id="bg-music" src="assets/audio/music.mp3" loop></audio>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" title="Back to Top">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+
+  <!-- Top Glass HUD Navigation Bar -->
+  <nav class="hud-nav">
+    <div class="nav-brand">
+      <img src="assets/images/logo.png" alt="HDN FLASH" class="nav-logo" />
+      <span class="nav-title neon-text">HDN FLASH</span>
+    </div>
+    <div class="nav-links" id="nav-links">
+      <a href="#hero" class="nav-item active"><i class="fa-solid fa-house"></i> <span>Home</span></a>
+      <a href="#about" class="nav-item"><i class="fa-solid fa-terminal"></i> <span>About</span></a>
+      <a href="#skills" class="nav-item"><i class="fa-solid fa-crosshair"></i> <span>Arsenal</span></a>
+      <a href="#projects" class="nav-item"><i class="fa-solid fa-cubes"></i> <span>Projects</span></a>
+      <a href="#contact" class="nav-item"><i class="fa-solid fa-headset"></i> <span>Contact</span></a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-status">
+        <span class="status-indicator"></span>
+        <span class="status-text">v3.0 ONLINE</span>
+      </div>
+      <button class="nav-burger" id="nav-burger" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-backdrop" id="nav-backdrop"></div>
+
+  <!-- Main Content Layer -->
+  <main class="content">
+
+    <!-- HERO SECTION -->
+    <section id="hero">
+      <div class="perspective-container">
+        <div class="glass-card tilt-card hero-glass-card" id="hero-card">
+          
+          <!-- Avatar / Hologram Logo Container -->
+          <div class="hologram-wrapper tilt-content">
+            <div class="holo-ring outer"></div>
+            <div class="holo-ring inner"></div>
+            <div class="avatar-wrap">
+              <img src="assets/images/logo.png" alt="HDN FLASH Logo">
+            </div>
+          </div>
+
+          <div class="hero-body">
+            
+            <!-- Online System Status Badge -->
+            <div class="cyber-pill-badge">
+              <span class="pulse-dot"></span>
+              <span>HDN FLASH OFFICIAL SYSTEM // ACTIVE</span>
+            </div>
+            
+            <!-- Glass Title Badge -->
+            <div class="title-badge-wrapper">
+              <div class="title-glass-badge">
+                <h1 class="hero-title neon-text">
+                  <span id="typing-title"></span><span class="typing-cursor">|</span>
+                </h1>
+              </div>
+            </div>
+            
+            <!-- Subtitle Container -->
+            <div class="hero-quote-box">
+              <p class="hero-sub">
+                “ <span id="typing-text"></span><span class="typing-cursor">|</span> ”
+              </p>
+            </div>
+
+            <!-- Quick Metrics Grid -->
+            <div class="hero-stats-grid">
+              <div class="stat-pill">
+                <i class="fa-solid fa-gauge-high"></i>
+                <div class="stat-info">
+                  <span class="stat-val">MAX</span>
+                  <span class="stat-lbl">SPEED</span>
+                </div>
+              </div>
+              <div class="stat-pill">
+                <i class="fa-solid fa-crosshair"></i>
+                <div class="stat-info">
+                  <span class="stat-val">99.9%</span>
+                  <span class="stat-lbl">PRECISION</span>
+                </div>
+              </div>
+              <div class="stat-pill">
+                <i class="fa-solid fa-robot"></i>
+                <div class="stat-info">
+                  <span class="stat-val">PRO</span>
+                  <span class="stat-lbl">AUTOMATION</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Media Buttons -->
+            <div class="social-links">
+              <a href="https://www.youtube.com/@hiddenoptimizer" target="_blank" class="social-btn youtube" title="YouTube Channel">
+                <i class="fa-brands fa-youtube"></i>
+                <span class="btn-tooltip">YouTube</span>
+              </a>
+              <a href="https://discord.gg/GTkQM8dZRp" target="_blank" class="social-btn discord" title="Discord Community">
+                <i class="fa-brands fa-discord"></i>
+                <span class="btn-tooltip">Discord</span>
+              </a>
+              <a href="https://github.com/rxmugdho12" target="_blank" class="social-btn github" title="GitHub Repository">
+                <i class="fa-brands fa-github"></i>
+                <span class="btn-tooltip">GitHub</span>
+              </a>
+            </div>
+
+            <!-- Primary Call-To-Action Buttons -->
+            <div class="hero-cta-row">
+              <a href="#projects" class="cta-btn cta-primary">
+                <i class="fa-solid fa-cubes"></i> View Projects
+              </a>
+              <a href="#contact" class="cta-btn cta-secondary">
+                <i class="fa-solid fa-headset"></i> Get in Touch
+              </a>
+            </div>
+
+            <!-- Creator / Brand Badge -->
+            <div class="creator-badge">
+              <span class="badge-sparkle">✨</span>
+              <span>DESIGNED & DEVELOPED BY <strong class="highlight-text">HDN FLASH</strong></span>
+              <span class="badge-divider">|</span>
+              <span><i class="fa-brands fa-instagram"></i> @hdnflash.official</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <a href="#about" class="scroll-indicator" aria-label="Scroll to About section">
+        <span class="scroll-text">SCROLL</span>
+        <span class="scroll-mouse"><span class="scroll-wheel"></span></span>
+      </a>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+      <div class="section-header reveal">
+        <span class="section-tag">// SYSTEM OVERVIEW</span>
+        <h2 class="neon-text section-title">ABOUT HDN FLASH</h2>
+        <p class="section-subtitle">Bridging High-Speed Gaming, Automation & Cyber Aesthetics</p>
+      </div>
+
+      <div class="about-grid reveal">
+        <!-- Main Quote Card -->
+        <div class="glass-card about-card main-quote-card">
+          <div class="card-glow-bg"></div>
+          <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+          <p class="quote-text">
+            Those who do not understand true pain can never understand true peace. HDN FLASH is built on precision, relentless speed, and unyielding code execution.
+          </p>
+          <div class="quote-author">— HDN FLASH CORE PHILOSOPHY</div>
+        </div>
+
+        <!-- Terminal Diagnostic Screen -->
+        <div class="glass-card about-card terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="terminal-title">hdn-flash-core ~ bash</div>
+          </div>
+          <div class="terminal-body" id="terminal-logs">
+            <div class="term-line"><span class="term-prompt">$</span> <span class="term-cmd">hdnflash --init-system</span></div>
+            <div class="term-line text-cyan">[INFO] Loading HDN FLASH Kernel v3.0...</div>
+            <div class="term-line text-green">[OK] Neural Precision Engine Connected.</div>
+            <div class="term-line text-purple">[OK] Game Spammer & Automation Modules Ready.</div>
+            <div class="term-line text-gold">[OK] 144Hz Cyber Visual Interface Engaged.</div>
+            <div class="term-line"><span class="term-prompt">$</span> <span class="term-cmd typing-log">awaiting user command...</span><span class="typing-cursor">_</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Feature Pillars -->
+      <div class="pillars-grid reveal">
+        <div class="pillar-card glass-card">
+          <div class="pillar-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+          <h3>ULTRA SPEED</h3>
+          <p>Instantaneous automation and rapid response scripts optimized for peak performance.</p>
+        </div>
+        <div class="pillar-card glass-card">
+          <div class="pillar-icon"><i class="fa-solid fa-shield-cat"></i></div>
+          <h3>BOT ARCHITECTURE</h3>
+          <p>Custom Discord bots and automated tools built for gaming communities and social platforms.</p>
+        </div>
+        <div class="pillar-card glass-card">
+          <div class="pillar-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <h3>VFX & MEDIA</h3>
+          <p>High-end cinematic video editing, gaming montage production, and visual art creation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARSENAL / SKILLS SECTION -->
+    <section id="skills">
+      <div class="section-header reveal">
+        <span class="section-tag">// PERFORMANCE METRICS</span>
+        <h2 class="neon-text section-title">COMBAT ARSENAL</h2>
+        <p class="section-subtitle">Hover to reveal dimensional metrics & masteries</p>
+      </div>
+      
+      <div class="skill-grid reveal">
+        <!-- Skill 1 -->
+        <div class="skill-cube glass-card tilt-card" data-level="99">
+          <div class="skill-icon-wrap">🎯</div>
+          <div class="skill-label">Precision</div>
+          <div class="skill-bar-container">
+            <div class="skill-bar-fill" style="width: 99%;"></div>
+          </div>
+          <span class="skill-percentage">99%</span>
+        </div>
+
+        <!-- Skill 2 -->
+        <div class="skill-cube glass-card tilt-card" data-level="100">
+          <div class="skill-icon-wrap">⚡</div>
+          <div class="skill-label">Ultra Speed</div>
+          <div class="skill-bar-container">
+            <div class="skill-bar-fill" style="width: 100%;"></div>
+          </div>
+          <span class="skill-percentage">100%</span>
+        </div>
+
+        <!-- Skill 3 -->
+        <div class="skill-cube glass-card tilt-card" data-level="98">
+          <div class="skill-icon-wrap">🧠</div>
+          <div class="skill-label">Tactics</div>
+          <div class="skill-bar-container">
+            <div class="skill-bar-fill" style="width: 98%;"></div>
+          </div>
+          <span class="skill-percentage">98%</span>
+        </div>
+
+        <!-- Skill 4 -->
+        <div class="skill-cube glass-card tilt-card" data-level="96">
+          <div class="skill-icon-wrap">🎮</div>
+          <div class="skill-label">Game Control</div>
+          <div class="skill-bar-container">
+            <div class="skill-bar-fill" style="width: 96%;"></div>
+          </div>
+          <span class="skill-percentage">96%</span>
+        </div>
+
+        <!-- Skill 5 -->
+        <div class="skill-cube glass-card tilt-card" data-level="97">
+          <div class="skill-icon-wrap">🤖</div>
+          <div class="skill-label">Bot Automation</div>
+          <div class="skill-bar-container">
+            <div class="skill-bar-fill" style="width: 97%;"></div>
+          </div>
+          <span class="skill-percentage">97%</span>
+        </div>
+
+        <!-- Skill 6 -->
+        <div class="skill-cube glass-card tilt-card" data-level="95">
+          <div class="skill-icon-wrap">✂️</div>
+          <div class="skill-label">VFX & Edit</div>
+          <div class="skill-bar-container">
+            <div class="skill-bar-fill" style="width: 95%;"></div>
+          </div>
+          <span class="skill-percentage">95%</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+      <div class="section-header reveal">
+        <span class="section-tag">// DEVELOPER ARCHIVE</span>
+        <h2 class="neon-text section-title">GAME DEV ARCHIVE</h2>
+        <p class="section-subtitle">HDN FLASH Specialized Systems & Tools</p>
+      </div>
+      
+      <div class="project-grid reveal">
+        <!-- Project Card 1 -->
+        <div class="project-card glass-card tilt-card">
+          <div class="project-img" style="background-image: url('assets/images/p1.jpg');">
+            <div class="img-badge">SYSTEM 01</div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">SOCIAL SPAMMER</h3>
+            <p class="project-desc">HDN FLASH Social Ecosystem & High-Speed Automation Suite</p>
+            <div class="project-tags">
+              <span class="tag">META ENGINE</span>
+              <span class="tag">HDN PRO</span>
+              <span class="tag">AUTOMATION</span>
+            </div>
+            <a href="https://discord.gg/GTkQM8dZRp" target="_blank" class="project-action-btn">
+              <span>EXPLORE TOOL</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project Card 2 -->
+        <div class="project-card glass-card tilt-card">
+          <div class="project-img" style="background-image: url('assets/images/p2.jpg');">
+            <div class="img-badge">SYSTEM 02</div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">DISCORD BOT SUITE</h3>
+            <p class="project-desc">Custom high-performance Discord bot architecture & command triggers</p>
+            <div class="project-tags">
+              <span class="tag">DISCORD.JS</span>
+              <span class="tag">COMMUNITY</span>
+              <span class="tag">CUSTOM BOT</span>
+            </div>
+            <a href="https://discord.gg/GTkQM8dZRp" target="_blank" class="project-action-btn">
+              <span>EXPLORE TOOL</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project Card 3 -->
+        <div class="project-card glass-card tilt-card">
+          <div class="project-img" style="background-image: url('assets/images/p3.jpg');">
+            <div class="img-badge">SYSTEM 03</div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">FREE FIRE PI CREATOR</h3>
+            <p class="project-desc">Gaming montage VFX, custom skins & high-end cinematic edits</p>
+            <div class="project-tags">
+              <span class="tag">CINEMATIC</span>
+              <span class="tag">GAMING VFX</span>
+              <span class="tag">CREATIVE</span>
+            </div>
+            <a href="https://www.youtube.com/@hiddenoptimizer" target="_blank" class="project-action-btn">
+              <span>WATCH DEMO</span> <i class="fa-solid fa-play"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+      <div class="section-header reveal">
+        <span class="section-tag">// COMMUNICATE</span>
+        <h2 class="neon-text section-title">CONNECT WITH HDN FLASH</h2>
+        <p class="section-subtitle">Establish direct neural connection & join community</p>
+      </div>
+      
+      <div class="glass-card contact-card reveal">
+        <div class="contact-header">
+          <div class="pulse-radar">
+            <span class="radar-ring"></span>
+            <i class="fa-solid fa-tower-broadcast"></i>
+          </div>
+          <h3 class="contact-brand neon-text">HDN FLASH NETWORK</h3>
+          <p class="contact-desc">Open for scrims, bot custom builds, and collaborations.</p>
+        </div>
+        
+        <div class="social-links contact-socials">
+          <a href="https://discord.gg/GTkQM8dZRp" target="_blank" class="social-btn discord" title="Join Discord Server">
+            <i class="fa-brands fa-discord"></i>
+            <span class="btn-label">Discord</span>
+          </a>
+          <a href="https://github.com/rxmugdho12" target="_blank" class="social-btn github" title="Visit GitHub Profile">
+            <i class="fa-brands fa-github"></i>
+            <span class="btn-label">GitHub</span>
+          </a>
+          <a href="https://www.youtube.com/@hiddenoptimizer" target="_blank" class="social-btn youtube" title="Subscribe YouTube">
+            <i class="fa-brands fa-youtube"></i>
+            <span class="btn-label">YouTube</span>
+          </a>
+        </div>
+
+        <div class="contact-footer-note">
+          <i class="fa-solid fa-shield-halved text-cyan"></i> HDN FLASH OFFICIAL COMMUNITY & SYSTEM
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-logo neon-text">HDN FLASH</div>
+        <p>© 2026 HDN FLASH // ALL RIGHTS RESERVED // DESIGNED & BUILT FOR EXCELLENCE</p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- JavaScript File -->
+  <script src="js/script.js"></script>
+</body>
+</html>
